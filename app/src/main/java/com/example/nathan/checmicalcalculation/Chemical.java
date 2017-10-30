@@ -6,14 +6,26 @@ package com.example.nathan.checmicalcalculation;
 
 public class Chemical {
     private String name;
-    private float rate;
+    private double rate;
     private String descrip;
+
+    Chemical() {
+        name = "null";
+        rate = 0;
+        descrip = "null";
+    }
+
+    Chemical(String name, double rate, String descrip) {
+        this.name = name;
+        this.rate = rate;
+        this.descrip = descrip;
+    }
 
     String getName() {
         return name;
     }
 
-    float getRate() {
+    double getRate() {
         return rate;
     }
 

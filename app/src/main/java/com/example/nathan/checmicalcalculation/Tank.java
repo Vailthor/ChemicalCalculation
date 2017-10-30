@@ -5,11 +5,23 @@ package com.example.nathan.checmicalcalculation;
  */
 
 public class Tank {
-    private float size;
+    private double size;
     private String name;
     private Log log;
 
-    float getSize() {
+    Tank() {
+        size = 0;
+        name = "null";
+        log = null;
+    }
+
+    Tank(double size, String name, Log log) {
+        this.size = size;
+        this.name = name;
+        this.log = log;
+    }
+
+    double getSize() {
         return size;
     }
 
