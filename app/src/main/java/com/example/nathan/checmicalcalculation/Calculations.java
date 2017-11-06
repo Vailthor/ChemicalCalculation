@@ -8,14 +8,26 @@ public class Calculations {
 
 
     double acresAppliedPerTank(int tanksize, int liquidAppliedPerAcre) {
-        double acresApplied = tanksize/liquidAppliedPerAcre;
-        return acresApplied;
+        double acresAppliedPerTank = tanksize/liquidAppliedPerAcre;
+        return acresAppliedPerTank;
         //Tank Size/ Liquid applied per acre = acres applied per tank
+
+        //TankZize is measured in Gallons
+
+        //This Method is assuming the Liquid applied per acre is measure in Gallons
+        //We will need to check and make sure this is always the case.
 
     }
     //acres applied per tank
     double TotalGallonsPerTank(double acresApplied, double ChemRatePerAcre) {
-        double TotalGallonsPerTank =acresApplied * ChemRatePerAcre;
+        //Right now this method presumes that all the chemical's per acre is measured in acres
+        //We will have to make sure that is the case. If not they we will have to rewrite this.
+        //Maybe save the per Acre measurement in the chemical object????
+
+        double TotalOuncesPerTank =acresApplied * ChemRatePerAcre;
+
+        double TotalGallonsPerTank = ouncesToGallons(TotalOuncesPerTank);
+
         return TotalGallonsPerTank;
 
         //acres applied * chemical rate per acre = total chemicals per tank
@@ -26,7 +38,7 @@ public class Calculations {
         return gallons;
     }
 
-    double gallonsToOunces(double gallons) {//converts ounces to gallons
+    double gallonsToOunces(double gallons) {//converts gallons to  Ounces
         double ounces = gallons/128;
         return ounces;
     }
