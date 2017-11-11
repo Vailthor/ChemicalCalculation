@@ -32,4 +32,16 @@ public class Chemical {
     String getDescrip() {
         return descrip;
     }
+
+    void setName(String name) {
+        this.name = name;
+    }
+
+    void setRate(double rate) {
+        this.rate = rate;
+    }
+
+    void setDescrip(String descrip) {
+        this.descrip = descrip;
+    }
 }
