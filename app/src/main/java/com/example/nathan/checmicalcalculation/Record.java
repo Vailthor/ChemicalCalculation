@@ -9,11 +9,11 @@ import java.util.List;
  * Created by Nathan on 10/30/2017.
  */
 
-public class Log {
+public class Record {
     private List<String> log;
     private List<Date> logTime;
 
-    Log() {
+    Record() {
         log = new ArrayList<>();
         logTime = new ArrayList<>();
     }

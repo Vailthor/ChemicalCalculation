@@ -7,7 +7,7 @@ package com.example.nathan.checmicalcalculation;
 public class Tank {
     private double size;
     private String name;
-    private Log log;
+    private Record log;
 
     Tank() {
         size = 0;
@@ -15,7 +15,7 @@ public class Tank {
         log = null;
     }
 
-    Tank(double size, String name, Log log) {
+    Tank(double size, String name, Record log) {
         this.size = size;
         this.name = name;
         this.log = log;
@@ -29,7 +29,7 @@ public class Tank {
         return name;
     }
 
-    Log getLog() {
+    Record getLog() {
         return log;
     }
 }

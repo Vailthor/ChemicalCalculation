@@ -7,7 +7,7 @@ package com.example.nathan.checmicalcalculation;
 public class Field {
     private double size;
     private String name;
-    private Log log;
+    private Record log;
 
     Field() {
         size = 0;
@@ -15,7 +15,7 @@ public class Field {
         log = null;
     }
 
-    Field(double size, String name, Log log) {
+    Field(double size, String name, Record log) {
         this.size = size;
         this.name = name;
         this.log = log;
@@ -29,7 +29,7 @@ public class Field {
         return name;
     }
 
-    Log getLog() {
+    Record getLog() {
         return log;
     }
 }
