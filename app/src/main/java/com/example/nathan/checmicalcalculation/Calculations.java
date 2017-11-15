@@ -7,7 +7,7 @@ package com.example.nathan.checmicalcalculation;
 public class Calculations {
 
 
-    double acresAppliedPerTank(int tanksize, int liquidAppliedPerAcre) {
+    double acresAppliedPerTank(double tanksize, double liquidAppliedPerAcre) {
         double acresAppliedPerTank = tanksize/liquidAppliedPerAcre;
         return acresAppliedPerTank;
         //Tank Size/ Liquid applied per acre = acres applied per tank

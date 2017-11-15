@@ -23,20 +23,23 @@ public class MainActivity extends AppCompatActivity {
     public static final String  PREFS_NAME = "MyPrefsFile";
     public static final String CHEM_FILE = "chemicals.txt";
     private static final String TAG  = "MainActivity";
+
     List<Chemical> chemicalList;
+    Calculations calculate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         chemicalList = new ArrayList<>();
+        calculate = new Calculations();
         int numChemicals = load();
         firstTime(numChemicals);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        String acres = settings.getString("acres", "DEFAULT");
-        String tankSize = settings.getString("tankSize", "DEFAULT");
-        String gPA = settings.getString("gPA", "DEFAULT");
-        String gPT = settings.getString("gPT", "DEFAULT");
+        String acres = settings.getString("acres", "");
+        String tankSize = settings.getString("tankSize", "");
+        String gPA = settings.getString("gPA", "");
+        String gPT = settings.getString("gPT", "");
         ((EditText)findViewById(R.id.acres)).setText(acres);
         ((EditText)findViewById(R.id.tankSize)).setText(tankSize);
         ((EditText)findViewById(R.id.galPerAcre)).setText(gPA);
@@ -83,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
             out.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+
         }
     }
 
@@ -125,5 +129,19 @@ public class MainActivity extends AppCompatActivity {
         for (Chemical c : chemicalList)
             chemicals += c.getName() + " ";
         Log.i(TAG, chemicals + "\n");
+    }
+
+    void calculateTank(View view)
+    {
+        double acres = Double.parseDouble(((EditText)findViewById(R.id.acres)).getText().toString());
+        double tankSize = Double.parseDouble(((EditText)findViewById(R.id.tankSize)).getText().toString());
+        double galPerAcre = Double.parseDouble(((EditText)findViewById(R.id.galPerAcre)).getText().toString());
+        Log.i(TAG, "tS-" + tankSize + " gpa-" + galPerAcre);
+        double acresPerTank = calculate.acresAppliedPerTank(tankSize, galPerAcre);
+        Log.i(TAG, "crash5");
+        double chemPerTank = calculate.TotalGallonsPerTank(acresPerTank, chemicalList.get(0).getRate());
+        Log.i(TAG, "crash6");
+
+        ((EditText)findViewById(R.id.galPerTank)).setText(Double.toString(chemPerTank));
     }
 }
