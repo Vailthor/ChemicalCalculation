@@ -33,10 +33,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        String acres = settings.getString("acres", "DEFAULT");
-        String tankSize = settings.getString("tankSize", "DEFAULT");
-        String gPA = settings.getString("gPA", "DEFAULT");
-        String gPT = settings.getString("gPT", "DEFAULT");
+        String acres = settings.getString("acres", "");
+        String tankSize = settings.getString("tankSize", "");
+        String gPA = settings.getString("gPA", "");
+        String gPT = settings.getString("gPT", "");
         ((EditText)findViewById(R.id.acres)).setText(acres);
         ((EditText)findViewById(R.id.tankSize)).setText(tankSize);
         ((EditText)findViewById(R.id.galPerAcre)).setText(gPA);
