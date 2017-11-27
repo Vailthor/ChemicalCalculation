@@ -36,9 +36,7 @@ public class MainActivity extends AppCompatActivity {
         ((EditText)findViewById(R.id.galPerTank)).setText(gPT);
         data = Data.getInstance(getApplication());
         populateSpinner();
-        //Change!!
-        //Dylan's Change!
-        //Super push Dylan
+        //Tom: Changing the comments to see if I fixed the problem on my computer.
     }
 
     //Populates the spinner with chemical name data
