@@ -7,7 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -31,11 +35,26 @@ public class MainActivity extends AppCompatActivity {
         ((EditText)findViewById(R.id.galPerAcre)).setText(gPA);
         ((EditText)findViewById(R.id.galPerTank)).setText(gPT);
         data = Data.getInstance(getApplication());
+        populateSpinner();
         //Change!!
         //Dylan's Change!
         //Super push Dylan
     }
 
+    //Populates the spinner with chemical name data
+    private void populateSpinner() {
+        ArrayList<String> chemStrings = new ArrayList<>();
+        for (Chemical c : data.chemicalList) {
+            chemStrings.add(c.getName());
+        }
+
+        Spinner spinner = new Spinner(this);
+        ArrayAdapter<String> spinAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, chemStrings);
+        spinAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinner = (Spinner) findViewById(R.id.chemSpin);
+        spinner.setAdapter(spinAdapter);
+    }
 
 
     protected void onPause()
@@ -68,9 +87,7 @@ public class MainActivity extends AppCompatActivity {
         double galPerAcre = Double.parseDouble(((EditText)findViewById(R.id.galPerAcre)).getText().toString());
         Log.i(TAG, "tS-" + tankSize + " gpa-" + galPerAcre);
         double acresPerTank = Calculations.acresAppliedPerTank(tankSize, galPerAcre);
-        Log.i(TAG, "crash5");
         double chemPerTank = Calculations.TotalGallonsPerTank(acresPerTank, data.chemicalList.get(0).getRate());
-        Log.i(TAG, "crash6");
 
         ((EditText)findViewById(R.id.galPerTank)).setText(Double.toString(chemPerTank));
     }

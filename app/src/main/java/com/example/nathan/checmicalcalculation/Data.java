@@ -2,9 +2,7 @@ package com.example.nathan.checmicalcalculation;
 
 import android.app.Application;
 import android.util.Log;
-
 import com.google.gson.Gson;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,7 +12,11 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Data {
+
+/**
+ * @author Nathan
+ */
+class Data {
 
     private static final String CHEM_FILE = "chemicals.txt";
     private static final String FIELD_FILE = "fields.txt";
@@ -29,6 +31,11 @@ public class Data {
 
     Application app;
 
+    /**
+     * Returns the instance of the data object, which contains the lists for chemicals, fields, and tanks
+     * @param application Used to find the current file directory
+     * @return instance of the singleton object
+     */
     public static synchronized Data getInstance(Application application) {
         if (instance == null)
             instance = new Data(application);
@@ -48,6 +55,9 @@ public class Data {
         checkLists();
     }
 
+    /**
+     * Reads information from files into there appropriate list
+     */
     private void load() {
         Gson gson = new Gson();
         int countChem = 0;
@@ -93,6 +103,9 @@ public class Data {
         firstTime(countChem, countField);
     }
 
+    /**
+     * Takes information from the lists and saves it into the files if there has been changes
+     */
     public void save() {
 
         Gson gson = new Gson();
@@ -131,10 +144,12 @@ public class Data {
         }
     }
 
-
-
+    /**
+     * If there was no file for a list then the default values are set for that list
+     * @param numChemicals How many chemicals were read from the file
+     * @param numFields How many fields were read from the file
+     */
     private void firstTime(int numChemicals, int numFields) {
-
 
         if (numChemicals == 0) {
             Log.i(TAG, "File read incorrectly \n");
@@ -189,5 +204,10 @@ public class Data {
         for (Field f : fieldList)
             fields += f.getName() + " ";
         Log.i(TAG, fields + "\n");
+    }
+
+    private void deleteFiles() {
+        app.deleteFile(CHEM_FILE);
+        app.deleteFile(FIELD_FILE);
     }
 }

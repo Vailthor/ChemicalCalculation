@@ -5,25 +5,32 @@ package com.example.nathan.checmicalcalculation;
  */
 
 public class Field {
-    private double acres;
-    private int yield;
     private String name;
     private String crop;
+    private double acres;
+    private int yield;
     private double price;
     private Record log;
 
+    /**
+     * Default Constructor for field
+     */
     Field() {
-        acres = 0;
         name = "null";
+        crop = "null";
+        acres = 0;
+        yield = 0;
+        price = 0.00;
         log = null;
     }
 
     Field(String name, String crop, double acres, int yield, double price) {
-        this.acres = acres;
         this.name = name;
         this.crop = crop;
-        this.price = price;
+        this.acres = acres;
         this.yield = yield;
+        this.price = price;
+        log = null;
     }
 
     double getAcres() {
