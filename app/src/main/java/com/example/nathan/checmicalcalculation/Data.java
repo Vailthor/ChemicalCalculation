@@ -50,8 +50,10 @@ class Data {
         fieldList = new ArrayList<>();
         changesChem = false;
         changesField = false;
-        load();
 
+        deleteFiles();
+
+        load();
         checkLists();
     }
 
@@ -152,13 +154,27 @@ class Data {
     private void firstTime(int numChemicals, int numFields) {
 
         if (numChemicals == 0) {
-            Log.i(TAG, "File read incorrectly \n");
+            Log.i(TAG, "Adding Chemical Defaults\n");
             changesChem = true;
-            chemicalList.clear();
-            Chemical chem1 = new Chemical("Roundup", 2.4, "Weed & Grass Killer");
-            Chemical chem2 = new Chemical("Rackmax", 2.2, "Plant Growth Hormone");
-            chemicalList.add(chem1);
-            chemicalList.add(chem2);
+            chemicalList.add(new Chemical("QUILT XCEL FUNGICIDE [2.5G]", 10.5, 14, "100-1324",'f',1,7));
+            chemicalList.add(new Chemical("AGRI STAR 2,4-D AMINE 4 [2.5G]", 40, 80, "42750-19",'h',4,7));
+            chemicalList.add(new Chemical("AGRI STAR MCPA ESTER 4 [2.5G]", 10, 20, "42750-23",'h',4,0));
+            chemicalList.add(new Chemical("DUPONT COMBO PACK 8 [BZ]", -1, -1, "-1",'h',-1,-1));
+            chemicalList.add(new Chemical("ROUNDUP POWER MAX [265BG]", 20, 44, "524-549",'h',1,14));
+            chemicalList.add(new Chemical("Poast", 30, 40, "7969-58",'h',1,14));
+            chemicalList.add(new Chemical("SENTRALLAS [2.5G]", -1, -1, "-1",'h',-1,-1));
+            chemicalList.add(new Chemical("STARANE FLEX [2.5G]", -1, -1, "-1",'h',-1,-1));
+            chemicalList.add(new Chemical("WEEDMASTER [2.5G]", -1, -1, "-1",'h',-1,-1));
+            chemicalList.add(new Chemical("AD-MAX 90, PHT [2.5G]", -1, -1, "-1",'s',-1,-1));
+            chemicalList.add(new Chemical("DELETE-IT, PHT [1G]", -1, -1, "-1",'s',-1,-1));
+            chemicalList.add(new Chemical("DRIFT-FIANT [2.5G]", -1, -1, "-1",'s',-1,-1));
+            chemicalList.add(new Chemical("LOAD UP, PHT [2.5G]", -1, -1, "-1",'s',-1,-1));
+            chemicalList.add(new Chemical("WETCIT [2.5G]", -1, -1, "-1",'s',-1,-1));
+
+
+
+
+
         }
 
         //default field values
@@ -207,6 +223,7 @@ class Data {
     }
 
     private void deleteFiles() {
+
         app.deleteFile(CHEM_FILE);
         app.deleteFile(FIELD_FILE);
     }

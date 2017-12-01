@@ -6,42 +6,76 @@ package com.example.nathan.checmicalcalculation;
 
 public class Chemical {
     private String name;
-    private double rate;
-    private String descrip;
+    private double rateLow;
+    private double rateHigh;
+    private String EPA;
+    private char chemClass;
+    //hrs
+    private int rainfast;
+    //days
+    private int PHI;
 
     Chemical() {
         name = "null";
-        rate = 0;
-        descrip = "null";
+        rateLow = 0;
+        rateHigh = 0;
+        EPA = "null";
+        chemClass = '0';
+        rainfast = 0;
+        PHI = 0;
     }
 
-    Chemical(String name, double rate, String descrip) {
+    Chemical(String name, double rateLow, double rateHigh, String EPA, char chemClass, int rainfast, int PHI) {
         this.name = name;
-        this.rate = rate;
-        this.descrip = descrip;
+        this.rateLow = rateLow;
+        this.rateHigh = rateHigh;
+        this.EPA = EPA;
+        this.chemClass = chemClass;
+        this.rainfast = rainfast;
+        this.PHI = PHI;
     }
 
     String getName() {
         return name;
     }
-
-    double getRate() {
-        return rate;
+    double getLowRate() {
+        return rateLow;
     }
-
-    String getDescrip() {
-        return descrip;
+    double getHighRate() {
+        return rateHigh;
     }
+    String getEPA() {
+        return EPA;
+    }
+    char getChemClass() {return chemClass;}
+    int getRainfast() {return rainfast;}
+    int getPHI() {return PHI;}
 
     void setName(String name) {
         this.name = name;
     }
-
-    void setRate(double rate) {
-        this.rate = rate;
+    void setLowRate(double rateLow) {
+        this.rateLow = rateLow;
     }
-
-    void setDescrip(String descrip) {
-        this.descrip = descrip;
+    void setHighRate(double rateHigh) {
+        this.rateHigh = rateHigh;
+    }
+    void setEPA(String EPA) {
+        this.EPA = EPA;
+    }
+    void setLowRate(int rateLow) {
+        this.rateLow = rateLow;
+    }
+    void setHighRate(int rateHigh) {
+        this.rateHigh = rateHigh;
+    }
+    void setChemClass(char chemClass) {
+        this.chemClass = chemClass;
+    }
+    void setRainfast(int rainfast) {
+        this.rainfast = rainfast;
+    }
+    void setPHI(int PHI) {
+        this.PHI = PHI;
     }
 }
