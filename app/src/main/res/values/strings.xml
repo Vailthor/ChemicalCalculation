@@ -7,4 +7,5 @@
     <string name="gPT">Gallons Per Tank</string>
     <string name="calculate">Calculate</string>
     <string name="buttonAdd">Add Values</string>
+    <string name="rateRange">Rate Range</string>
 </resources>

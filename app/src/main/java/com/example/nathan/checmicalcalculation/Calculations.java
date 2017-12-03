@@ -1,5 +1,8 @@
 package com.example.nathan.checmicalcalculation;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /**
  * Created by Dylan Pratt on 11/5/2017.
  */
@@ -41,5 +44,13 @@ public class Calculations {
     static double gallonsToOunces(double gallons) {//converts gallons to  Ounces
         double ounces = gallons/128;
         return ounces;
+    }
+
+    static double truncate(double num) {
+        Double toBeTruncated = num;
+        Double truncated = BigDecimal.valueOf(toBeTruncated)
+                .setScale(3, RoundingMode.HALF_UP)
+                .doubleValue();
+        return truncated;
     }
 }

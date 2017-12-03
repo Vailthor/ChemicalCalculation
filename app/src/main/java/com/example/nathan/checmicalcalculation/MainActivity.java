@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -19,12 +20,39 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG  = "MainActivity";
 
     Data data;
+    int spinnerPosition = 0;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        data = Data.getInstance(getApplication());
+        start();
+
+        Spinner spinner = (Spinner) findViewById(R.id.chemSpin);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                double low = data.chemicalList.get(position).getLowRate();
+                double high = data.chemicalList.get(position).getHighRate();
+                ((EditText)findViewById(R.id.rate)).setText(low + " - " + high);
+                spinnerPosition = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+        //Tom: Changing the comments to see if I fixed the problem on my computer.
+    }
+
+    //Populates the spinner with chemical name data
+    private void start() {
+        ArrayList<String> chemStrings = new ArrayList<>();
+
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         String acres = settings.getString("acres", "");
         String tankSize = settings.getString("tankSize", "");
@@ -34,14 +62,7 @@ public class MainActivity extends AppCompatActivity {
         ((EditText)findViewById(R.id.tankSize)).setText(tankSize);
         ((EditText)findViewById(R.id.galPerAcre)).setText(gPA);
         ((EditText)findViewById(R.id.galPerTank)).setText(gPT);
-        data = Data.getInstance(getApplication());
-        populateSpinner();
-        //Tom: Changing the comments to see if I fixed the problem on my computer.
-    }
 
-    //Populates the spinner with chemical name data
-    private void populateSpinner() {
-        ArrayList<String> chemStrings = new ArrayList<>();
         for (Chemical c : data.chemicalList) {
             chemStrings.add(c.getName());
         }
@@ -52,6 +73,11 @@ public class MainActivity extends AppCompatActivity {
 
         spinner = (Spinner) findViewById(R.id.chemSpin);
         spinner.setAdapter(spinAdapter);
+
+        EditText galPerTank = (EditText) findViewById(R.id.galPerTank);
+        galPerTank.setEnabled(false);
+        EditText rate = (EditText) findViewById(R.id.rate);
+        rate.setEnabled(false);
     }
 
 
@@ -77,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     void calculateTank(View view)
     {
         double acres = Double.parseDouble(((EditText)findViewById(R.id.acres)).getText().toString());
@@ -85,9 +110,10 @@ public class MainActivity extends AppCompatActivity {
         double galPerAcre = Double.parseDouble(((EditText)findViewById(R.id.galPerAcre)).getText().toString());
         Log.i(TAG, "tS-" + tankSize + " gpa-" + galPerAcre);
         double acresPerTank = Calculations.acresAppliedPerTank(tankSize, galPerAcre);
-        double chemPerTank = Calculations.TotalGallonsPerTank(acresPerTank, data.chemicalList.get(0).getLowRate());
+        double chemPerTank = Calculations.TotalGallonsPerTank(acresPerTank, data.chemicalList.get(spinnerPosition).getLowRate());
+        double galPerTankNum = Calculations.truncate(((chemPerTank)));
 
-        ((EditText)findViewById(R.id.galPerTank)).setText(Double.toString(chemPerTank));
+        ((EditText)findViewById(R.id.galPerTank)).setText(Double.toString(galPerTankNum));
     }
 
 
