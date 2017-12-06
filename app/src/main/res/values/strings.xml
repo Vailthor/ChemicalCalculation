@@ -8,4 +8,12 @@
     <string name="calculate">Calculate</string>
     <string name="buttonAdd">Add Values</string>
     <string name="rateRange">Rate Range</string>
+    <string name="chemName">Chemical Name</string>
+    <string name="rateLow">Rate Low (ounces/acre)</string>
+    <string name="epaNum">EPA Number</string>
+    <string name="rateHigh">Rate High (ounces/acre)</string>
+    <string name="chemClass">Chem Class</string>
+    <string name="rainfast">Rainfast (hours)</string>
+    <string name="phi">PHI (days)</string>
+    <string name="save">Save</string>
 </resources>

@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String  PREFS_NAME = "MyPrefsFile";
     private static final String TAG  = "MainActivity";
 
-    Data data;
+    private Data data;
     int spinnerPosition = 0;
 
 

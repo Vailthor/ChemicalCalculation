@@ -63,12 +63,6 @@ public class Chemical {
     void setEPA(String EPA) {
         this.EPA = EPA;
     }
-    void setLowRate(int rateLow) {
-        this.rateLow = rateLow;
-    }
-    void setHighRate(int rateHigh) {
-        this.rateHigh = rateHigh;
-    }
     void setChemClass(char chemClass) {
         this.chemClass = chemClass;
     }
