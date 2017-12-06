@@ -9,7 +9,9 @@ import java.math.RoundingMode;
 // This class will house the math and logic we need the app to preform
 public class Calculations {
 
-
+    /**
+     * acresAppliedPerTank takes the tanksize and the liquidAppliedPerAcre to figue out the acresAppied per tank
+     */
     static double acresAppliedPerTank(double tanksize, double liquidAppliedPerAcre) {
         double acresAppliedPerTank = tanksize/liquidAppliedPerAcre;
         return acresAppliedPerTank;
@@ -23,9 +25,6 @@ public class Calculations {
     }
     //acres applied per tank
     static double TotalGallonsPerTank(double acresApplied, double ChemRatePerAcre) {
-        //Right now this method presumes that all the chemical's per acre is measured in acres
-        //We will have to make sure that is the case. If not they we will have to rewrite this.
-        //Maybe save the per Acre measurement in the chemical object????
 
         double TotalOuncesPerTank =acresApplied * ChemRatePerAcre;
 
@@ -35,17 +34,23 @@ public class Calculations {
 
         //acres applied * chemical rate per acre = total chemicals per tank
     }
-
+    /**
+     * converts ounces to gallons
+     */
     static double ouncesToGallons(double ounces) {//converts ounces to gallons
         double gallons = ounces/128;
         return gallons;
     }
-
+    /**
+     * Converts gallons to ounces
+     */
     static double gallonsToOunces(double gallons) {//converts gallons to  Ounces
         double ounces = gallons/128;
         return ounces;
     }
-
+    /**
+     * ???????????????????????????
+     */
     static double truncate(double num) {
         Double toBeTruncated = num;
         Double truncated = BigDecimal.valueOf(toBeTruncated)
