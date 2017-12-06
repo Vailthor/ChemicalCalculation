@@ -229,17 +229,8 @@ class Data {
     }
 
     public void addChemical(Chemical newChem) {
-        boolean added = false;
-        for (int i = 0; i < chemicalList.size(); i++) {
-            if (newChem.getName().compareTo(chemicalList.get(i).getName()) >= 0) {
-                chemicalList.add(i, newChem);
-                added = true;
-            }
-        }
-        if (!added) {
-            chemicalList.add(newChem);
-        }
-
+        chemicalList.add(newChem);
+        changesChem = true;
     }
 
     public void changeChemicalInfo(int spot, String name, double rateLow, double rateHigh, String EPA, char chemClass, int rainfast, int PHI) {
@@ -251,5 +242,6 @@ class Data {
         toChange.setChemClass(chemClass);
         toChange.setRainfast(rainfast);
         toChange.setPHI(PHI);
+        changesChem = true;
     }
 }

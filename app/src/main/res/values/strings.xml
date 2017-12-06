@@ -16,4 +16,5 @@
     <string name="rainfast">Rainfast (hours)</string>
     <string name="phi">PHI (days)</string>
     <string name="save">Save</string>
+    <string name="addChem">Add/Change Chemical</string>
 </resources>

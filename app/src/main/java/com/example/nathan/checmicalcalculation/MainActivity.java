@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     public static final String  PREFS_NAME = "MyPrefsFile";
+    public static final String EXTRA_MESSAGE = "com.example.nathan.chemicalcalculation.MESSAGE";
     private static final String TAG  = "MainActivity";
 
     private Data data;
@@ -116,6 +117,11 @@ public class MainActivity extends AppCompatActivity {
         ((EditText)findViewById(R.id.galPerTank)).setText(Double.toString(galPerTankNum));
     }
 
-
+    void openAddChem(View view) {
+        Intent intent = new Intent(this, AddChemicalInfo.class);
+        intent.putExtra(EXTRA_MESSAGE, "farming");
+        Log.i(TAG, "Intent Created, about to start add chem application\n");
+        startActivity(intent);
+    }
 
 }

@@ -2,6 +2,7 @@ package com.example.nathan.checmicalcalculation;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,6 +13,8 @@ import java.util.ArrayList;
 
 public class AddChemicalInfo extends AppCompatActivity {
 
+    private static final String TAG  = "AddChemicalActivity";
+
     private Data data;
     int spinnerPosition = 0;
 
@@ -20,7 +23,10 @@ public class AddChemicalInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_chemical_info);
 
+        Log.i(TAG, "Activity Starting\n");
+
         data = Data.getInstance(getApplication());
+        setSpinner();
 
         Spinner spinner = (Spinner) findViewById(R.id.chemSpin);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -28,14 +34,24 @@ public class AddChemicalInfo extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 
                 if (position != 0) {
-                    Chemical currentChemical = data.chemicalList.get(position);
+                    Log.i(TAG, "Setting Edit Texts\n");
+                    Chemical currentChemical = data.chemicalList.get(position - 1);
                     ((EditText)findViewById(R.id.chemName)).setText(currentChemical.getName());
                     ((EditText)findViewById(R.id.epaNum)).setText(currentChemical.getEPA());
-                    ((EditText)findViewById(R.id.chemClass)).setText(currentChemical.getChemClass());
+                    ((EditText)findViewById(R.id.chemClass)).setText(Character.toString(currentChemical.getChemClass()));
                     ((EditText)findViewById(R.id.rateLow)).setText(Double.toString(currentChemical.getLowRate()));
                     ((EditText)findViewById(R.id.rateHigh)).setText(Double.toString(currentChemical.getHighRate()));
                     ((EditText)findViewById(R.id.rainfast)).setText(Integer.toString(currentChemical.getRainfast()));
                     ((EditText)findViewById(R.id.phi)).setText(Integer.toString(currentChemical.getPHI()));
+                }
+                else {
+                    ((EditText)findViewById(R.id.chemName)).setText("");
+                    ((EditText)findViewById(R.id.epaNum)).setText("");
+                    ((EditText)findViewById(R.id.chemClass)).setText("");
+                    ((EditText)findViewById(R.id.rateLow)).setText("");
+                    ((EditText)findViewById(R.id.rateHigh)).setText("");
+                    ((EditText)findViewById(R.id.rainfast)).setText("");
+                    ((EditText)findViewById(R.id.phi)).setText("");
                 }
                 spinnerPosition = position;
             }
@@ -51,20 +67,20 @@ public class AddChemicalInfo extends AppCompatActivity {
     private void setSpinner() {
         ArrayList<String> chemStrings = new ArrayList<>();
         chemStrings.add("New Chemical");
-        Spinner spinner = new Spinner(this);
+
+
+        for (Chemical c : data.chemicalList) {
+            chemStrings.add(c.getName());
+        }
 
         ArrayAdapter<String> spinAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, chemStrings);
         spinAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        spinner = (Spinner) findViewById(R.id.chemSpin);
+        Spinner spinner = (Spinner) findViewById(R.id.chemSpin);
         spinner.setAdapter(spinAdapter);
 
-        EditText galPerTank = (EditText) findViewById(R.id.galPerTank);
-        galPerTank.setEnabled(false);
-        EditText rate = (EditText) findViewById(R.id.rate);
-        rate.setEnabled(false);
     }
-    void save() {
+    void save(View view) {
         String chemName = ((EditText)findViewById(R.id.chemName)).getText().toString();
         String epaNum = ((EditText)findViewById(R.id.epaNum)).getText().toString();
         char chemClass = ((EditText)findViewById(R.id.chemClass)).getText().toString().charAt(0);
@@ -77,9 +93,10 @@ public class AddChemicalInfo extends AppCompatActivity {
             data.addChemical(newChem);
         }
         else {
-            data.changeChemicalInfo(spinnerPosition,chemName, rateLow, rateHigh, epaNum, chemClass, rainfast, phi);
+            data.changeChemicalInfo(spinnerPosition - 1,chemName, rateLow, rateHigh, epaNum, chemClass, rainfast, phi);
 
         }
+        setSpinner();
     }
 
 }
