@@ -127,8 +127,8 @@ public class MainActivity extends AppCompatActivity {
             galPerAcre = 1;
         }
         Log.i(TAG, "tS-" + tankSize + " gpa-" + galPerAcre);
-        double acresPerTank = Calculations.acresAppliedPerTank(tankSize, galPerAcre);
-        double chemPerTank = Calculations.TotalGallonsPerTank(acresPerTank, data.chemicalList.get(spinnerPosition).getLowRate());
+        double acresPerTank = Calculations.acresAppliedPerTank(tankSize, acres);
+        double chemPerTank = Calculations.TotalGallonsPerTank(acresPerTank, galPerAcre);
         double galPerTankNum = Calculations.truncate(((chemPerTank)));
 
         ((EditText) findViewById(R.id.galPerTank)).setText(Double.toString(galPerTankNum));
