@@ -3,6 +3,7 @@ package com.example.nathan.checmicalcalculation;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -104,17 +105,33 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    void calculateTank(View view)
-    {
-        double acres = Double.parseDouble(((EditText)findViewById(R.id.acres)).getText().toString());
-        double tankSize = Double.parseDouble(((EditText)findViewById(R.id.tankSize)).getText().toString());
-        double galPerAcre = Double.parseDouble(((EditText)findViewById(R.id.galPerAcre)).getText().toString());
+    void calculateTank(View view) {
+        double acres;
+        double tankSize;
+        double galPerAcre;
+        try {
+            acres = Double.parseDouble(((EditText) findViewById(R.id.acres)).getText().toString());
+        } catch (NumberFormatException e) {
+            acres = 0;
+        }
+        try {
+            tankSize = Double.parseDouble(((EditText) findViewById(R.id.tankSize)).getText().toString());
+        } catch (NumberFormatException e)
+        {
+            tankSize = 0;
+        }
+        try {
+            galPerAcre = Double.parseDouble(((EditText) findViewById(R.id.galPerAcre)).getText().toString());
+        } catch(NumberFormatException e)
+        {
+            galPerAcre = 1;
+        }
         Log.i(TAG, "tS-" + tankSize + " gpa-" + galPerAcre);
         double acresPerTank = Calculations.acresAppliedPerTank(tankSize, galPerAcre);
         double chemPerTank = Calculations.TotalGallonsPerTank(acresPerTank, data.chemicalList.get(spinnerPosition).getLowRate());
         double galPerTankNum = Calculations.truncate(((chemPerTank)));
 
-        ((EditText)findViewById(R.id.galPerTank)).setText(Double.toString(galPerTankNum));
+        ((EditText) findViewById(R.id.galPerTank)).setText(Double.toString(galPerTankNum));
     }
 
     void openAddChem(View view) {
