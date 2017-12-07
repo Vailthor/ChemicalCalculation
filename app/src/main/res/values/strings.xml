@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">Checmical Calculation</string>
-    <string name="acres">Acres</string>
+    <string name="app_name">PEP Farms Chemical Calculator</string>
+    <string name="acres">Liquid Applied Per Acre</string>
     <string name="tankSize">Tank Size</string>
     <string name="chemicals">Chemicals</string>
-    <string name="gPA">Gallons Per Acre</string>
+    <string name="gPA">Rate</string>
     <string name="gPT">Gallons Per Tank</string>
     <string name="calculate">Calculate</string>
     <string name="buttonAdd">Add Values</string>
