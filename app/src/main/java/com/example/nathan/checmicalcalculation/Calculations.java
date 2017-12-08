@@ -17,7 +17,7 @@ public class Calculations {
         return acresAppliedPerTank;
         //Tank Size/ Liquid applied per acre = acres applied per tank
 
-        //TankZize is measured in Gallons
+        //TankSize is measured in Gallons
 
         //This Method is assuming the Liquid applied per acre is measure in Gallons
         //We will need to check and make sure this is always the case.
