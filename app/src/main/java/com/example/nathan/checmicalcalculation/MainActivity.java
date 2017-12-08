@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -109,29 +110,40 @@ public class MainActivity extends AppCompatActivity {
         double acres;
         double tankSize;
         double galPerAcre;
+        boolean problem = false;
         try {
             acres = Double.parseDouble(((EditText) findViewById(R.id.acres)).getText().toString());
         } catch (NumberFormatException e) {
             acres = 0;
+            Toast.makeText(this, "Problem with \"Liquid Applied Per Acre\"", Toast.LENGTH_SHORT).show();
+            problem = true;
+
         }
         try {
             tankSize = Double.parseDouble(((EditText) findViewById(R.id.tankSize)).getText().toString());
         } catch (NumberFormatException e)
         {
             tankSize = 0;
+            Toast.makeText(this, "Problem with \"Tank Size\"", Toast.LENGTH_SHORT).show();
+            problem = true;
         }
         try {
             galPerAcre = Double.parseDouble(((EditText) findViewById(R.id.galPerAcre)).getText().toString());
         } catch(NumberFormatException e)
         {
             galPerAcre = 1;
+            Toast.makeText(this, "Problem with \"Rate\"", Toast.LENGTH_SHORT).show();
+            problem = true;
         }
         Log.i(TAG, "tS-" + tankSize + " gpa-" + galPerAcre);
-        double acresPerTank = Calculations.acresAppliedPerTank(tankSize, acres);
-        double chemPerTank = Calculations.TotalGallonsPerTank(acresPerTank, galPerAcre);
-        double galPerTankNum = Calculations.truncate(((chemPerTank)));
 
-        ((EditText) findViewById(R.id.galPerTank)).setText(Double.toString(galPerTankNum));
+        if (!problem) {
+            double acresPerTank = Calculations.acresAppliedPerTank(tankSize, acres);
+            double chemPerTank = Calculations.TotalGallonsPerTank(acresPerTank, galPerAcre);
+            double galPerTankNum = Calculations.truncate(chemPerTank);
+
+            ((EditText) findViewById(R.id.galPerTank)).setText(Double.toString(galPerTankNum));
+        }
     }
 
     void openAddChem(View view) {

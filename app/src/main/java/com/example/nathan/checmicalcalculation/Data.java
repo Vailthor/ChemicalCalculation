@@ -228,11 +228,26 @@ class Data {
         app.deleteFile(FIELD_FILE);
     }
 
+    /**
+     * Will take a chemical and add it to the chemicalList
+     * @param newChem Chemical to add
+     */
     public void addChemical(Chemical newChem) {
         chemicalList.add(newChem);
         changesChem = true;
     }
 
+    /**
+     * Change the information of a Chemical already in the chemicalList
+     * @param spot To Change
+     * @param name To Change
+     * @param rateLow To Change
+     * @param rateHigh To Change
+     * @param EPA To Change
+     * @param chemClass To Change
+     * @param rainfast To Change
+     * @param PHI To Change
+     */
     public void changeChemicalInfo(int spot, String name, double rateLow, double rateHigh, String EPA, char chemClass, int rainfast, int PHI) {
         Chemical toChange = chemicalList.get(spot);
         toChange.setName(name);
