@@ -156,7 +156,7 @@ class Data {
         if (numChemicals == 0) {
             Log.i(TAG, "Adding Chemical Defaults\n");
             changesChem = true;
-            chemicalList.add(new Chemical("QUILT XCEL FUNGICIDE [2.", 10.5, 14, "100-1324",'f',1,7));
+            chemicalList.add(new Chemical("QUILT XCEL FUNGICIDE [2.5G]", 10.5, 14, "100-1324",'f',1,7));
             chemicalList.add(new Chemical("AGRI STAR 2,4-D AMINE 4 [2.5G]", 40, 80, "42750-19",'h',4,7));
             chemicalList.add(new Chemical("AGRI STAR MCPA ESTER 4 [2.5G]", 10, 20, "42750-23",'h',4,0));
             chemicalList.add(new Chemical("DUPONT COMBO PACK 8 [BZ]", -1, -1, "-1",'h',-1,-1));
