@@ -2,6 +2,10 @@ package com.example.nathan.checmicalcalculation;
 
 /**
  * Created by Nathan on 10/30/2017.
+ * Notes by Dylan Pratt
+ * Chemical class holds all the infomation relating to the chemicals.
+ * Some of this infomation is currently unused. Extra feature that is currently beeing worked on
+ * is a log of which chemicals are sprayed on which fields.
  */
 
 public class Chemical {
