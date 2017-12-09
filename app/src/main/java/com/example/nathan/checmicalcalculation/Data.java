@@ -51,7 +51,7 @@ class Data {
         changesChem = false;
         changesField = false;
 
-        deleteFiles();
+        //deleteFiles();
 
         load();
         checkLists();
