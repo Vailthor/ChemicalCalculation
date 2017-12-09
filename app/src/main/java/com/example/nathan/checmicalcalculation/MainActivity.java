@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    void calculateTank(View view) {
+    public void calculateTank(View view) {
         double acres;
         double tankSize;
         double galPerAcre;
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    void openAddChem(View view) {
+    public void openAddChem(View view) {
         Intent intent = new Intent(this, AddChemicalInfo.class);
         intent.putExtra(EXTRA_MESSAGE, "farming");
         Log.i(TAG, "Intent Created, about to start add chem application\n");

@@ -81,7 +81,7 @@ public class AddChemicalInfo extends AppCompatActivity {
         spinner.setAdapter(spinAdapter);
 
     }
-    void save(View view) {
+    public void save(View view) {
         try {
             String chemName = ((EditText) findViewById(R.id.chemName)).getText().toString();
             String epaNum = ((EditText) findViewById(R.id.epaNum)).getText().toString();
