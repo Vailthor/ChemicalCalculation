@@ -6,7 +6,7 @@ import java.math.RoundingMode;
 /**
  * Created by Dylan Pratt on 11/5/2017.
  */
-// This class will house the math and logic we need the app to preform
+// This class will house the math and logic we need the app to preform.
 public class Calculations {
 
     /**
