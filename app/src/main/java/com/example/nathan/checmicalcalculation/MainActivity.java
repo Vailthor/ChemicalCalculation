@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-        //Tom: Changing the comments to see if I fixed the problem on my computer.
     }
 
     //Populates the spinner with chemical name data
