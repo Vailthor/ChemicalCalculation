@@ -11,6 +11,9 @@ public class Calculations {
 
     /**
      * acresAppliedPerTank takes the tanksize and the liquidAppliedPerAcre to figue out the acresAppied per tank
+     * @param tanksize
+     * @param liquidAppliedPerAcre
+     * @return
      */
     static double acresAppliedPerTank(double tanksize, double liquidAppliedPerAcre) {
         double acresAppliedPerTank = tanksize/liquidAppliedPerAcre;
@@ -23,7 +26,13 @@ public class Calculations {
         //We will need to check and make sure this is always the case.
 
     }
-    //acres applied per tank
+
+    /**
+     * Equation to get Total Gallons per Tank
+     * @param acresApplied
+     * @param ChemRatePerAcre
+     * @return
+     */
     static double TotalGallonsPerTank(double acresApplied, double ChemRatePerAcre) {
 
         double TotalOuncesPerTank =acresApplied * ChemRatePerAcre;
@@ -34,22 +43,31 @@ public class Calculations {
 
         //acres applied * chemical rate per acre = total chemicals per tank
     }
+
     /**
-     * converts ounces to gallons
+     * Converts ounces to gallons
+     * @param ounces
+     * @return
      */
     static double ouncesToGallons(double ounces) {//converts ounces to gallons
         double gallons = ounces/128;
         return gallons;
     }
+
     /**
-     * Converts gallons to ounces
+     * Converts Gallons T oOunces
+     * @param gallons
+     * @return
      */
     static double gallonsToOunces(double gallons) {//converts gallons to  Ounces
         double ounces = gallons/128;
         return ounces;
     }
+
     /**
-     * ???????????????????????????
+     * Truncate prevents the number from being to long on the screen
+     * @param num
+     * @return
      */
     static double truncate(double num) {
         Double toBeTruncated = num;
