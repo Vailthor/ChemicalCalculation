@@ -2,6 +2,9 @@ package com.example.nathan.checmicalcalculation;
 
 /**
  * Created by Nathan on 10/30/2017.
+ * Field class holds all the infomation relating to the Fields.
+ * Currently this class is mostly unused. It was key for a strech challenge that would log what
+ * Chemicals had been sprayed on what field.
  */
 
 public class Field {
