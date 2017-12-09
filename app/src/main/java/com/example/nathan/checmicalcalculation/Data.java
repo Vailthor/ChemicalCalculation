@@ -51,7 +51,7 @@ class Data {
         changesChem = false;
         changesField = false;
 
-        //deleteFiles();
+        deleteFiles();
 
         load();
         checkLists();
@@ -248,7 +248,7 @@ class Data {
      * @param rainfast To Change
      * @param PHI To Change
      */
-    public void changeChemicalInfo(int spot, String name, double rateLow, double rateHigh, String EPA, char chemClass, int rainfast, int PHI) {
+    public void changeChemicalInfo(int spot, String name, double rateLow, double rateHigh, String EPA, char chemClass, double rainfast, double PHI) {
         Chemical toChange = chemicalList.get(spot);
         toChange.setName(name);
         toChange.setLowRate(rateLow);

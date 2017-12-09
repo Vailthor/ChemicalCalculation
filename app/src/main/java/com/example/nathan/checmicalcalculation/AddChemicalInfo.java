@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -41,8 +42,8 @@ public class AddChemicalInfo extends AppCompatActivity {
                     ((EditText)findViewById(R.id.chemClass)).setText(Character.toString(currentChemical.getChemClass()));
                     ((EditText)findViewById(R.id.rateLow)).setText(Double.toString(currentChemical.getLowRate()));
                     ((EditText)findViewById(R.id.rateHigh)).setText(Double.toString(currentChemical.getHighRate()));
-                    ((EditText)findViewById(R.id.rainfast)).setText(Integer.toString(currentChemical.getRainfast()));
-                    ((EditText)findViewById(R.id.phi)).setText(Integer.toString(currentChemical.getPHI()));
+                    ((EditText)findViewById(R.id.rainfast)).setText(Double.toString(currentChemical.getRainfast()));
+                    ((EditText)findViewById(R.id.phi)).setText(Double.toString(currentChemical.getPHI()));
                 }
                 else {
                     ((EditText)findViewById(R.id.chemName)).setText("");
@@ -81,22 +82,30 @@ public class AddChemicalInfo extends AppCompatActivity {
 
     }
     void save(View view) {
-        String chemName = ((EditText)findViewById(R.id.chemName)).getText().toString();
-        String epaNum = ((EditText)findViewById(R.id.epaNum)).getText().toString();
-        char chemClass = ((EditText)findViewById(R.id.chemClass)).getText().toString().charAt(0);
-        double rateLow = Double.parseDouble(((EditText)findViewById(R.id.rateLow)).getText().toString());
-        double rateHigh = Double.parseDouble(((EditText)findViewById(R.id.rateHigh)).getText().toString());
-        int rainfast = Integer.parseInt(((EditText)findViewById(R.id.rainfast)).getText().toString());
-        int phi = Integer.parseInt(((EditText)findViewById(R.id.phi)).getText().toString());
-        if (spinnerPosition == 0) {
-            Chemical newChem = new Chemical(chemName, rateLow, rateHigh, epaNum, chemClass, rainfast, phi);
-            data.addChemical(newChem);
-        }
-        else {
-            data.changeChemicalInfo(spinnerPosition - 1,chemName, rateLow, rateHigh, epaNum, chemClass, rainfast, phi);
+        try {
+            String chemName = ((EditText) findViewById(R.id.chemName)).getText().toString();
+            String epaNum = ((EditText) findViewById(R.id.epaNum)).getText().toString();
+            char chemClass = ((EditText) findViewById(R.id.chemClass)).getText().toString().charAt(0);
+            double rateLow = Double.parseDouble(((EditText) findViewById(R.id.rateLow)).getText().toString());
+            double rateHigh = Double.parseDouble(((EditText) findViewById(R.id.rateHigh)).getText().toString());
+            double rainfast = Double.parseDouble(((EditText) findViewById(R.id.rainfast)).getText().toString());
+            double phi = Double.parseDouble(((EditText) findViewById(R.id.phi)).getText().toString());
+            if (spinnerPosition == 0) {
+                Chemical newChem = new Chemical(chemName, rateLow, rateHigh, epaNum, chemClass, rainfast, phi);
+                data.addChemical(newChem);
+            } else {
+                data.changeChemicalInfo(spinnerPosition - 1, chemName, rateLow, rateHigh, epaNum, chemClass, rainfast, phi);
 
+            }
+            setSpinner();
         }
-        setSpinner();
+        catch (Exception e) {
+            if (spinnerPosition == 0)
+                Toast.makeText(this, "Problem Making New Chemical", Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(this, "Problem Editing Chemical", Toast.LENGTH_SHORT).show();
+        }
     }
+
 
 }

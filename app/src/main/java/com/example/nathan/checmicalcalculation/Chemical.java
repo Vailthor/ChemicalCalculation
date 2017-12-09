@@ -11,9 +11,9 @@ public class Chemical {
     private String EPA;
     private char chemClass;
     //hrs
-    private int rainfast;
+    private double rainfast;
     //days
-    private int PHI;
+    private double PHI;
 
     Chemical() {
         name = "null";
@@ -25,7 +25,7 @@ public class Chemical {
         PHI = 0;
     }
 
-    Chemical(String name, double rateLow, double rateHigh, String EPA, char chemClass, int rainfast, int PHI) {
+    Chemical(String name, double rateLow, double rateHigh, String EPA, char chemClass, double rainfast, double PHI) {
         this.name = name;
         this.rateLow = rateLow;
         this.rateHigh = rateHigh;
@@ -48,8 +48,8 @@ public class Chemical {
         return EPA;
     }
     char getChemClass() {return chemClass;}
-    int getRainfast() {return rainfast;}
-    int getPHI() {return PHI;}
+    double getRainfast() {return rainfast;}
+    double getPHI() {return PHI;}
 
     void setName(String name) {
         this.name = name;
@@ -66,10 +66,10 @@ public class Chemical {
     void setChemClass(char chemClass) {
         this.chemClass = chemClass;
     }
-    void setRainfast(int rainfast) {
+    void setRainfast(double rainfast) {
         this.rainfast = rainfast;
     }
-    void setPHI(int PHI) {
+    void setPHI(double PHI) {
         this.PHI = PHI;
     }
 }
