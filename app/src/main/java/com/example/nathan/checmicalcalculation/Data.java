@@ -15,6 +15,8 @@ import java.util.List;
 
 /**
  * @author Nathan
+ * notes by Dylan
+ * This class reads in the data from our other sources
  */
 class Data {
 
